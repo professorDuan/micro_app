@@ -1,18 +1,18 @@
-import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom'
+import {HashRouter, Link, Route, Switch} from 'react-router-dom';
 import React from 'react'
 import Home  from './Home.jsx';
 import About from './About.jsx';
  
 function App() {
   return (
-    <Router>
+    <HashRouter>
         <Link to='/'>首页</Link>&nbsp;&nbsp;
         <Link to='/about'>关于</Link>
-        <Routes>
-          <Route path="/" exact element={<Home/>}></Route>
-          <Route path='/about' exact element={<About/>}/>
-        </Routes>
-    </Router>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/about" component={About} />
+        </Switch>
+    </HashRouter>
   );
 }
 

@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import logo from './logo.svg';
+import React,{ useState } from 'react';
+import logo from '../public/logo192.png';
+import './Home.css';
 
 const Home = () => {
     const [params, setParams] = useState({name:'', password: ''})
@@ -11,9 +12,7 @@ const Home = () => {
         }
         fetch('http://localhost:3000/react/login',{
             method: 'POST',
-            headers: {
-        　　　　'Content-Type': 'application/json'
-        　　 },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name, password})
         }).then(res => res.json())
         .then(res => res.error ? alert('登录失败') : alert('登录成功'))
@@ -23,7 +22,7 @@ const Home = () => {
         <br/>
         密码<input type="password" value={params.password} onChange={e => setParams({...params, password: e.target.value})}/>
         <br/>
-        <button style={{marginTop: '20px'}} onClick={login}>登录</button>
+        <button onClick={login}>登录</button>
         <br/>
         <img src={logo}/>
     </div>
