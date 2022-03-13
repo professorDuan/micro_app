@@ -1,0 +1,41 @@
+Arguments: 
+  /usr/local/bin/node /Users/bytedance/.yarn/bin/yarn.js add html-webpack-plugin
+
+PATH: 
+  /Users/bytedance/.yarn/bin:/Users/bytedance/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/puppetlabs/bin:/Users/bytedance/.yarn/bin:/Users/bytedance/.config/yarn/global/node_modules/.bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  16.13.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: EACCES: permission denied, unlink '/Users/bytedance/Desktop/my_mirco/professor-micro/node_modules/dom-walk/Makefile'
+
+npm manifest: 
+  {
+    "name": "professor-micro",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "node ./build/run.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "global": "^4.4.0",
+      "koa-generator": "^1.1.17"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
