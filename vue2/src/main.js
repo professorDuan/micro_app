@@ -10,7 +10,7 @@ let instance = null
 function render() {
   instance = new Vue({
     router,
-    store,
+    store, 
     render: h => h(App)
   }).$mount('#app-vue')
 }
