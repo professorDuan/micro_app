@@ -8,16 +8,10 @@ Vue.use(ElementUI)
 
 const apps = [
   {
-    name: 'vue2',
+    name: 'vue',
     entry: '//localhost:8001/',
     container: '#sonApp',
-    activeRule: '/vue2'
-  },
-  {
-    name: 'vue3',
-    entry: '//localhost:8002/',
-    container: '#sonApp',
-    activeRule: '/vue3'
+    activeRule: '/vue'
   },
   {
     name: 'react',

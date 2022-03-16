@@ -4,7 +4,7 @@ import Home from '../components/Home'
 import List from '../components/List'
 Vue.use(VueRouter)
 
-const baseUrl = '/vue2'
+//const baseUrl = '/vue'
 
 const routes = [
   {
@@ -21,7 +21,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'hash',
-  base: baseUrl,
+  //base: baseUrl,
   routes
 })
 

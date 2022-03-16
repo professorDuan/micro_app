@@ -15,14 +15,12 @@ export const rewriteRouter = () => {
         prevRouter = window.location.pathname
         originalPushState.apply(history, arguments)
         currentRouter = window.location.pathname
-        console.log('push')
         pathChange()
     }
     history.replaceState = function() {
         prevRouter = window.location.pathname
         originalReplaceState.apply(history, arguments)
         currentRouter = window.location.pathname
-        console.log('replace')
         pathChange()
     }
     //重新定义前进/后退方法
@@ -30,7 +28,6 @@ export const rewriteRouter = () => {
         //此时页面路由已经变化了
         prevRouter = currentRouter
         currentRouter = window.location.pathname
-        console.log('pop')
         pathChange()
     })
 }

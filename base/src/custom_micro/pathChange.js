@@ -3,12 +3,12 @@ import { getCurrentApp, getPrevApp } from "./utils"
 
 export const pathChange = async() => {
     const currentApp = getCurrentApp()
-    if (!currentApp) return
     const prevApp = getPrevApp()
     //卸载之前的子应用
     if (prevApp) { 
-        //await unmount(prevApp)
+        await _unmount(prevApp)
     }
+    if (!currentApp) return
     //启动子应用
     const {template, execScripts} = await importHTML(currentApp.entry)
     const container = document.querySelector(currentApp.container)
@@ -19,18 +19,18 @@ export const pathChange = async() => {
     currentApp.bootstrap = bootstrap
     currentApp.mount = mount
     currentApp.unmount = unmount
-    await bootstrap(currentApp)
-    await mount(currentApp)
+    await _bootstrap(currentApp)
+    await _mount(currentApp)
 }
 
-async function bootstrap(app){
+async function _bootstrap(app){
     await app.bootstrap?.()
 }
 
-async function mount(app){
+async function _mount(app){
     await app.mount?.()
 }
 
-async function unmount(app){
+async function _unmount(app){
     await app.unmount?.()
 }

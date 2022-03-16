@@ -34,8 +34,8 @@ module.exports = {
     output: {
       // 把子应用打包成 umd 库格式
       libraryTarget: 'umd',
-      filename: 'vue2.js',
-      library: 'vue2',
+      filename: 'vue.js',
+      library: 'vue',
       jsonpFunction: `webpackJsonp_${name}`,
     },
   },
