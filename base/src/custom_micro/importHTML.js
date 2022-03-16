@@ -15,14 +15,10 @@ export const importHTML = async(url) => {
         }))
     }
     //执行script脚本
-    const execScripts = async() => {
+    const execScripts = async(name,proxy) => {
         const scripts = await getExternalScripts()
-        //手动构建一个CommonJS环境
-        const module = {exports: {}}
-        const exports = {}
-        scripts.forEach(script => eval(script))
-        //返回的exports里有三个协议方法
-        return module.exports
+        scripts.forEach(script => eval.call(proxy, script))
+        return proxy[name]
     }
  
     return {

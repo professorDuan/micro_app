@@ -21,7 +21,9 @@ if (!window.__CUSTOM__MICRO) {
 }
 
 //开始加载(一般做些加载前的参数处理操作)
-export const bootstrap = async () => {}
+export const bootstrap = async () => {
+  window.a = 1
+}
 //开始挂载到DOM上
 export const mount = async () => {
   render()

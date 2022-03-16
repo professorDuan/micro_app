@@ -1,11 +1,14 @@
 import { importHTML } from "./importHTML"
+import SnapshotSandbox from "./sandbox/sanpshotSandbox"
 import { getCurrentApp, getPrevApp } from "./utils"
 
 export const pathChange = async() => {
     const currentApp = getCurrentApp()
     const prevApp = getPrevApp()
-    //卸载之前的子应用
     if (prevApp) { 
+        //让之前子应用全局数据清空
+        prevApp.proxy && prevApp.proxy.inactive()
+        //卸载之前的子应用
         await _unmount(prevApp)
     }
     if (!currentApp) return
@@ -15,7 +18,10 @@ export const pathChange = async() => {
     container.appendChild(template)
     //配置全局变量
     window.__CUSTOM__MICRO = true
-    const {bootstrap, mount, unmount} = await execScripts()
+    if (!currentApp.proxy) {
+        currentApp.proxy = new SnapshotSandbox()
+    }
+    const {bootstrap, mount, unmount} = await execScripts(currentApp.name, currentApp.proxy.proxy)
     currentApp.bootstrap = bootstrap
     currentApp.mount = mount
     currentApp.unmount = unmount
