@@ -21,6 +21,8 @@ export const pathChange = async() => {
     if (!currentApp.proxy) {
         currentApp.proxy = new SnapshotSandbox()
     }
+    //激活当前应用全局数据
+    currentApp.proxy.active()
     const {bootstrap, mount, unmount} = await execScripts(currentApp.name, currentApp.proxy.proxy)
     currentApp.bootstrap = bootstrap
     currentApp.mount = mount

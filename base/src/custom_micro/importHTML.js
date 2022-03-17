@@ -14,7 +14,7 @@ export const importHTML = async(url) => {
             }
         }))
     }
-    //执行script脚本
+    //执行script脚本(name必须和打包时的library名一致)
     const execScripts = async(name,proxy) => {
         const scripts = await getExternalScripts()
         scripts.forEach(script => eval.call(proxy, script))

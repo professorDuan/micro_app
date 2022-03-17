@@ -1,4 +1,4 @@
-//沙箱快照
+//沙箱快照(无法支持多实例,同一时间页面只能显示一个子应用)
 export default class SnapshotSandbox {
     constructor() {
         this.proxy = window
@@ -6,7 +6,6 @@ export default class SnapshotSandbox {
         this.snapshot = {}
         //修改对象
         this.modify = {}
-        this.active()
     }
     active() {
         for (let key in window) {
