@@ -1,9 +1,9 @@
 //代理沙箱
+//所有对window的改动获取都通过这个对象来完成
+let fakeWindow = {}
 export default class ProxySandbox {
     constructor() {
         this.proxy = null
-        //所有对window的改动获取都通过这个对象来完成
-        this.fakeWindow = {}
     }
     active() {
         this.proxy = new Proxy(window, {
@@ -12,13 +12,16 @@ export default class ProxySandbox {
                 if (typeof target[key] === 'function') {
                     return target[key].bind(target)
                 }
-                return this.fakeWindow[key] || target[key]
+                return fakeWindow[key] || target[key]
             },
             set(target, key, value) {
-                this.fakeWindow[key] = value
+                fakeWindow[key] = value
                 return true
             }
         })
     }
-    inactive() {}
+    //每次卸载时销毁原有的代理对象,防止污染其他应用中的沙箱
+    inactive() {
+        fakeWindow = {}
+    }
 }
