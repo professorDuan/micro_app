@@ -13,7 +13,9 @@ function render(){
 if (!window.__CUSTOM__MICRO) {
   render()
 } 
-export const bootstrap = async() => {}
+export const bootstrap = async() => {
+  
+}
 
 export const mount = async() => {  
   render()

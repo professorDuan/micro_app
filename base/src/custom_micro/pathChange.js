@@ -1,6 +1,5 @@
 import { importHTML } from "./importHTML"
-//import SnapshotSandbox from "./sandbox/sanpshotSandbox"
-import ProxySandbox from "./sandbox/proxySandbox"
+import SandBox from "./sandbox/sanpshotSandbox"
 import { getCurrentApp, getPrevApp } from "./utils"
 
 export const pathChange = async() => {
@@ -20,7 +19,7 @@ export const pathChange = async() => {
     //配置全局变量
     window.__CUSTOM__MICRO = true
     if (!currentApp.proxy) {
-        currentApp.proxy = new ProxySandbox()
+        currentApp.proxy = new SandBox()
     }
     //激活当前应用全局数据
     currentApp.proxy.active()
@@ -33,7 +32,7 @@ export const pathChange = async() => {
 }
 
 async function _bootstrap(app){
-    await app.bootstrap?.()
+    await app.bootstrap?.(app.props)
 }
 
 async function _mount(app){
