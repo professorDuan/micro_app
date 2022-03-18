@@ -2,6 +2,13 @@ import { importHTML } from "./importHTML"
 import SandBox from "./sandbox/sanpshotSandbox"
 import { getCurrentApp, getPrevApp } from "./utils"
 
+//可能是一个返回Promise的函数，也可能是多个返回Promise的函数的数组集合，因此将它们串联起来依次执行
+const compose = (fns) => {
+    fns = Array.isArray(fns) ? fns : [fns]
+    //给每个Promise传入props
+    return props => fns.reduce((chain, p) => chain.then(() => p(props)), Promise.resolve())
+}
+
 export const pathChange = async() => {
     const currentApp = getCurrentApp()
     const prevApp = getPrevApp()
@@ -24,9 +31,9 @@ export const pathChange = async() => {
     //激活当前应用全局数据
     currentApp.proxy.active()
     const {bootstrap, mount, unmount} = await execScripts(currentApp.name, currentApp.proxy.proxy)
-    currentApp.bootstrap = bootstrap
-    currentApp.mount = mount
-    currentApp.unmount = unmount
+    currentApp.bootstrap = compose(bootstrap)
+    currentApp.mount = compose(mount)
+    currentApp.unmount = compose(unmount)
     await _bootstrap(currentApp)
     await _mount(currentApp)
 }

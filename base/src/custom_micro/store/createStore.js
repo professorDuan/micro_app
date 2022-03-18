@@ -16,4 +16,9 @@ export const createStore = (initState = {}) => {
         store = newStore
         observers.forEach(async observer => await observer(newStore,originalStore))
     }
+    return {
+        subscribe,
+        getStore,
+        update
+    }
 }
